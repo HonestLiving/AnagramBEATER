@@ -1,8 +1,9 @@
 import PySimpleGUI as sg
 
 
-# PROBLEM: MIGHT NOT WORK WITH DUPLICATE LETTERS
+# PROBLEM: DOES NOT WORK PERFECTLY WITH DUPLICATE LETTERS
 # Find out how to convert this into exe file
+
 sg.theme('DarkAmber')
 
 reader = open('suitableWords.txt',"r")
@@ -126,6 +127,7 @@ while True:
         for i in scrollableAnswersColomn:
             if i not in noDupeAnswerColomn:
                 noDupeAnswerColomn.append(i)
+
         # Sorts from greatest to least amount of points
         noDupeAnswerColomn.sort(key=len,reverse=True)
 
