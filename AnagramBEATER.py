@@ -126,6 +126,8 @@ while True:
         for i in scrollableAnswersColomn:
             if i not in noDupeAnswerColomn:
                 noDupeAnswerColomn.append(i)
+        # Sorts from greatest to least amount of points
+        noDupeAnswerColomn.sort(key=len,reverse=True)
 
         # This is where to update the characters for the display
         for i in range (len(letters)):
