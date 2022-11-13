@@ -1,8 +1,8 @@
 import PySimpleGUI as sg
 
 
-# PROBLEM: DOES NOT WORK PERFECTLY WITH DUPLICATE LETTERS
 # Find out how to convert this into exe file
+# In anagrams, there is only 1 duplicate letter at max
 
 sg.theme('DarkAmber')
 
@@ -98,9 +98,23 @@ while True:
 
         letters = values['-IN-'].upper()
         splitUp=""
-        lettersCopy = letters
+
         possibleCombos =[]
         scrollableAnswersColomn =[]
+        dupeCheck = []
+
+        # If there are dupes, replace one of the dupes with "-", then after the combos are made replace all "-" with the dupe character
+        # Strings are immutable in python. Need cast to array then bring back.
+        for i in range(len(letters)):
+            if letters[i] not in dupeCheck:
+                dupeCheck.append(letters[i])
+            else:
+                lettersList = list(letters)
+                dupeChar = letters[i]
+                lettersList[i]="-"
+                letters= "".join(lettersList)
+
+        lettersCopy = letters
 
         for i in range (5):
             # Stores all combos of length i
@@ -118,6 +132,14 @@ while True:
                             possibleCombos.append (k+j)
             # Replace combos of prev length with new combos
             lettersCopy = temp
+
+        for i in range(len(possibleCombos)):
+            if "-" in possibleCombos[i]:
+                tempList = list(possibleCombos[i])
+                for j in range(len(tempList)):
+                    if tempList[j]=="-":
+                        tempList[j]= dupeChar
+                possibleCombos[i] = "".join(tempList)
 
         for i in possibleCombos:
             if i in correctWords:
