@@ -97,6 +97,7 @@ while True:
     if event == "Read":
 
         letters = values['-IN-'].upper()
+        displayLetters = letters
         splitUp=""
 
         possibleCombos =[]
@@ -154,8 +155,8 @@ while True:
         noDupeAnswerColomn.sort(key=len,reverse=True)
 
         # This is where to update the characters for the display
-        for i in range (len(letters)):
-            splitUp+= letters[i]+" "
+        for i in range (len(displayLetters)):
+            splitUp+= displayLetters[i]+" "
         window['-OUTPUT-'].update(splitUp)
 
         # Update column
